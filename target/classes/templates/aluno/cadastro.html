@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html layout:decorate="~{layout}" xmlns:layout="">
+<head>
+    <meta charset="UTF-8"/>
+</head>
+<body>
+
+<section class="layout-content" layout:fragment="corpo">
+    <div class="page-header">
+        <nav class="navbar navbar-expand-md navbar-top bg-light">
+            <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+                <ul class="navbar-nav">
+                    <li class="nav-item active">
+                        <i class="oi oi-caret-right"></i>
+                        <span>Cadastrar Alunos</span>
+                    </li>
+                </ul>
+            </div>
+            <a class="btn btn-primary btn-md" th:href="@{/alunos/listar}" role="button">
+                <span class="oi oi-spreadsheet" title="Cadastro" aria-hidden="true"></span>
+                <span>Listar Alunos</span>
+            </a>
+        </nav>
+    </div>
+
+    <div class="container" id="cadastro">
+
+        <div th:replace="fragments/alert"></div>
+
+        <form th:action="${aluno.id == null} ? @{/alunos/salvar} : @{/alunos/editar}"
+              th:object="${aluno}" method="POST">
+            <fieldset>
+                <legend>Dados do Aluno</legend>
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="nome">Nome do Aluno</label>
+                        <input type="text" class="form-control" id="nome" placeholder="Nome Completo"
+                               autofocus="autofocus" th:field="*{nome}"
+                               th:classappend="${#fields.hasErrors('nome')} ? 'is-invalid'"/>
+                        <div class="invalid-feedback">
+                            <span th:errors="*{nome}"></span>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="dataNascimento">Data de Nascimento</label>
+                        <input type="date" class="form-control" id="dataNascimento" th:field="*{dataNascimento}"
+                               th:classappend="${#fields.hasErrors('dataNascimento')} ? 'is-invalid'"/>
+                        <div class="invalid-feedback">
+                            <span th:errors="*{dataNascimento}"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="dataEntrada">Data de Entrada</label>
+                        <input type="date" class="form-control" id="dataEntrada" th:field="*{dataEntrada}"
+                               th:classappend="${#fields.hasErrors('dataEntrada')} ? 'is-invalid'"/>
+                        <div class="invalid-feedback">
+                            <span th:errors="*{dataEntrada}"></span>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="dataSaida">Data de Saída</label>
+                        <input type="date" class="form-control" id="dataSaida" th:field="*{dataSaida}"
+                               th:classappend="${#fields.hasErrors('dataSaida')} ? 'is-invalid'"/>
+                        <div class="invalid-feedback">
+                            <span th:errors="*{dataSaida}"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="escola">Escola</label>
+                        <input type="text" class="form-control" id="escola" th:field="*{escola}"
+                               th:classappend="${#fields.hasErrors('escola')} ? 'is-invalid'"/>
+                        <div class="invalid-feedback">
+                            <span th:errors="*{escola}"></span>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="dataSaida">Serie</label>
+                        <input type="text" class="form-control" id="serie" th:field="*{serie}"
+                               th:classappend="${#fields.hasErrors('serie')} ? 'is-invalid'"/>
+                        <div class="invalid-feedback">
+                            <span th:errors="*{serie}"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="telefone">Telefone</label>
+                        <input type="text" class="form-control" id="telefone" th:field="*{telefone}"
+                               th:classappend="${#fields.hasErrors('telefone')} ? 'is-invalid'"/>
+                        <div class="invalid-feedback">
+                            <span th:errors="*{telefone}"></span>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="numeroFamiliares">Número de Familiares</label>
+                        <input type="number" class="form-control" id="numeroFamiliares"
+                               th:field="*{numeroFamiliares}"
+                               th:classappend="${#fields.hasErrors('numeroFamiliares')} ? 'is-invalid'"/>
+                        <div class="invalid-feedback">
+                            <span th:errors="*{numeroFamiliares}"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-4">
+                        <label for="nececissadeTrasporte">Necessita de Transporte</label>
+                        <select id="nececissadeTrasporte" class="form-control" th:field="*{nececissadeTrasporte}"
+                                th:classappend="${#fields.hasErrors('nececissadeTrasporte')} ? 'is-invalid'">
+                            <option value="">Selecione...</option>
+                            <option th:each="sn : ${sNs}" th:value="${sn}" th:text="${sn.descricao}"></option>
+                        </select>
+                        <div class="invalid-feedback">
+                            <span th:errors="*{nececissadeTrasporte}"></span>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="acessoInternet">Acesso a internet</label>
+                        <select id="acessoInternet" class="form-control" th:field="*{acessoInternet}"
+                                th:classappend="${#fields.hasErrors('acessoInternet')} ? 'is-invalid'">
+                            <option value="">Selecione...</option>
+                            <option th:each="sn : ${sNs}" th:value="${sn}" th:text="${sn.descricao}"></option>
+                        </select>
+                        <div class="invalid-feedback">
+                            <span th:errors="*{acessoInternet}"></span>
+                        </div>
+                    </div>
+                </div>
+
+            </fieldset>
+
+            <fieldset>
+                <legend>Responsável</legend>
+                <div class="form-row">
+                    <div class="form-group col-md-4">
+                        <label for="nomeResponsavel">Nome</label>
+                        <input type="text" class="form-control" id="nomeResponsavel" th:field="*{responsavel.nome}"/>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="telefoneResponsavel">Telefone</label>
+                        <input type="text" class="form-control" id="telefoneResponsavel" th:field="*{responsavel.telefone}"/>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="parentesco">Parentesco</label>
+                        <input type="text" class="form-control" id="parentesco" th:field="*{responsavel.parentesco}"/>
+                    </div>
+                </div>
+            </fieldset>
+
+            <fieldset>
+                <legend>Endereço</legend>
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="cidade">Cidade</label>
+                        <input type="text" class="form-control" id="cidade" th:field="*{endereco.cidade}"
+                               th:classappend="${#fields.hasErrors('endereco.cidade')} ? 'is-invalid'"/>
+                        <div class="invalid-feedback">
+                            <span th:errors="*{endereco.cidade}"></span>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="logradouro">Logradouro</label>
+                        <input type="text" class="form-control" id="logradouro"
+                               placeholder="logradouro sem número" th:field="*{endereco.logradouro}"
+                               th:classappend="${#fields.hasErrors('endereco.logradouro')} ? 'is-invalid'"/>
+                        <div class="invalid-feedback">
+                            <span th:errors="*{endereco.logradouro}"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="numero">Número</label>
+                        <input type="number" class="form-control" id="numero" th:field="*{endereco.numero}"
+                               th:classappend="${#fields.hasErrors('endereco.numero')} ? 'is-invalid'"/>
+                        <div class="invalid-feedback">
+                            <span th:errors="*{endereco.numero}"></span>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="complemento">Complemento</label>
+                        <input type="text" class="form-control" id="complemento"
+                               placeholder="fundos, casa, AP. 102, .." th:field="*{endereco.complemento}"
+                               th:classappend="${#fields.hasErrors('endereco.complemento')} ? 'is-invalid'"/>
+                        <div class="invalid-feedback">
+                            <span th:errors="*{endereco.complemento}"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="bairro">Bairro</label>
+                        <input type="text" class="form-control" id="bairro" th:field="*{endereco.bairro}"
+                               th:classappend="${#fields.hasErrors('endereco.bairro')} ? 'is-invalid'"/>
+                        <div class="invalid-feedback">
+                            <span th:errors="*{endereco.bairro}"></span>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="uf">UF</label>
+                        <select id="uf" class="form-control" th:field="*{endereco.uf}"
+                                th:classappend="${#fields.hasErrors('endereco.uf')} ? 'is-invalid'">
+                            <option value="">Selecione...</option>
+                            <option th:each="uf : ${ufs}" th:value="${uf}" th:text="${uf.sigla}"></option>
+                        </select>
+                        <div class="invalid-feedback">
+                            <span th:errors="*{endereco.uf}"></span>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-2">
+                        <label for="cep">Cep</label>
+                        <input type="text" class="form-control" id="cep" data-mask="00000-000"
+                               th:field="*{endereco.cep}"
+                               th:classappend="${#fields.hasErrors('endereco.cep')} ? 'is-invalid'"/>
+                        <div class="invalid-feedback">
+                            <span th:errors="*{endereco.cep}"></span>
+                        </div>
+                    </div>
+                </div>
+            </fieldset>
+            <fieldset>
+                <legend>Dados Socioeconômicos</legend>
+                <div class="form-row">
+                    <div class="form-group col-md-4">
+                        <label for="possuiComputador">Possui Computador</label>
+                        <select id="possuiComputador" class="form-control" th:field="*{socioeconomico.possuiComputador}">
+                            <option value="">Selecione...</option>
+                            <option th:each="sn : ${sNs}" th:value="${sn}" th:text="${sn.descricao}"></option>
+                        </select>
+                    </div>
+
+                    <div class="form-group col-md-4">
+                        <label for="carroFamilia">Carro na Família</label>
+                        <select id="carroFamilia" class="form-control" th:field="*{socioeconomico.carroFamilia}">
+                            <option value="">Selecione...</option>
+                            <option th:each="sn : ${sNs}" th:value="${sn}" th:text="${sn.descricao}"></option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-4">
+                        <label for="escolaridadePai">Escolaridade do Pai</label>
+                        <select id="escolaridadePai" class="form-control" th:field="*{socioeconomico.escolaridadePai}">
+                            <option value="">Selecione...</option>
+                            <option th:each="escolaridade : ${escolaridades}" th:value="${escolaridade}" th:text="${escolaridade.descricao}"></option>
+                        </select>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="escolaridadeMae">Escolaridade da Mãe</label>
+                        <select id="escolaridadeMae" class="form-control" th:field="*{socioeconomico.escolaridadeMae}">
+                            <option value="">Selecione...</option>
+                            <option th:each="escolaridade : ${escolaridades}" th:value="${escolaridade}" th:text="${escolaridade.descricao}"></option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="empregoPai">Emprego do Pai</label>
+                        <input type="text" class="form-control" id="empregoPai" th:field="*{socioeconomico.empregoPai}">
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="empregoMae">Emprego da Mãe</label>
+                        <input type="text" class="form-control" id="empregoMae" th:field="*{socioeconomico.empregoMae}">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="numeroFilhosFamilia">Número de Filhos na Família</label>
+                        <input type="number" class="form-control" id="numeroFilhosFamilia"
+                               th:field="*{socioeconomico.numeroFilhosFamilia}">
+                    </div>
+
+                    <div class="form-group col-md-4">
+                        <label for="casa">Casa</label>
+                        <select id="casa" class="form-control" th:field="*{socioeconomico.casa}">
+                            <option value="">Selecione...</option>
+                            <option th:each="casa : ${casas}" th:value="${casa}" th:text="${casa.descricao}"></option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="numeroPessoasEmpregadas">Número de Pessoas Empregadas na Família</label>
+                        <input type="number" class="form-control" id="numeroPessoasEmpregadas"
+                               th:field="*{socioeconomico.numeroPessoasEmpregadas}">
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="rendaFamilia">Renda Familiar</label>
+                        <input type="text" class="form-control" id="rendaFamilia"
+                               th:field="*{socioeconomico.rendaFamilia}">
+                    </div>
+                </div>
+            </fieldset>
+            <input type="hidden" id="id" th:field="*{id}"/>
+            <input type="hidden" id="endereco.id" th:field="*{endereco.id}"/>
+            <button type="submit" class="btn btn-primary btn-sm">Salvar</button>
+        </form>
+    </div>
+</section>
+</body>
+</html>
