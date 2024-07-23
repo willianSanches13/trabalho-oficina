@@ -1,6 +1,10 @@
 package com.ellp.boot.web.controller;
 
 import com.ellp.boot.domain.*;
+import com.ellp.boot.domain.enums.CasaEnum;
+import com.ellp.boot.domain.enums.EscolaridadeEnum;
+import com.ellp.boot.domain.enums.SimNaoEnum;
+import com.ellp.boot.domain.enums.UfEnum;
 import com.ellp.boot.web.validator.AlunoValidator;
 import com.ellp.boot.service.AlunoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,6 +41,7 @@ public class AlunoController {
 		model.addAttribute("alunos", alunoService.buscarTodos());
 		return "aluno/lista"; 
 	}
+
 	
 	@PostMapping("/salvar")
 	public String salvar(@Valid Aluno aluno, BindingResult result, RedirectAttributes attr) {
@@ -86,12 +91,6 @@ public class AlunoController {
 		model.addAttribute("alunos", alunoService.buscarPorNome(nome));
 		return "aluno/lista";
 	}
-	
-	@GetMapping("/buscar/cargo")
-	public String getPorCargo(@RequestParam("id") Long id, ModelMap model) {
-		model.addAttribute("alunos", alunoService.buscarPorCargo(id));
-		return "aluno/lista";
-	}		
 	
     @GetMapping("/buscar/data")
     public String getPorDatas(@RequestParam("entrada") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate entrada,

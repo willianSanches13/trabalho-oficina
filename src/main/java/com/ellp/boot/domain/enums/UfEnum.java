@@ -1,4 +1,4 @@
-package com.ellp.boot.domain;
+package com.ellp.boot.domain.enums;
 
 import lombok.Getter;
 

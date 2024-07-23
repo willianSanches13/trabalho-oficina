@@ -1,5 +1,6 @@
 package com.ellp.boot.domain;
 
+import com.ellp.boot.domain.enums.SimNaoEnum;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.format.annotation.DateTimeFormat;

@@ -55,12 +55,6 @@ public class AlunoServiceImpl implements AlunoService {
 	}
 
 	@Override
-	public List<Aluno> buscarPorCargo(Long id) {
-		
-		return dao.findByCargoId(id);
-	}
-
-	@Override
     public List<Aluno> buscarPorDatas(LocalDate entrada, LocalDate saida) {
 	    if (entrada != null && saida != null) {	    	
             return dao.findByDataEntradaDataSaida(entrada, saida);

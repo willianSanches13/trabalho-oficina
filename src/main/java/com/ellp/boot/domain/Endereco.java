@@ -2,6 +2,8 @@ package com.ellp.boot.domain;
 
 import javax.persistence.*;
 import javax.validation.constraints.*;
+
+import com.ellp.boot.domain.enums.UfEnum;
 import lombok.Getter;
 import lombok.Setter;
 

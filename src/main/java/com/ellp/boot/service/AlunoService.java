@@ -19,7 +19,5 @@ public interface AlunoService {
 
 	List<Aluno> buscarPorNome(String nome);
 
-	List<Aluno> buscarPorCargo(Long id);
-	
 	List<Aluno> buscarPorDatas(LocalDate entrada, LocalDate saida);
 }
