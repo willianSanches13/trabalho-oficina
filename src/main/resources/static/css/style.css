@@ -43,13 +43,13 @@ legend {
 }
 
 thead tr th, thead tr td {
-    border-left: 2px solid #000; /* Adiciona uma borda sólida preta com 2px de espessura na lateral esquerda */
-    border-right: 2px solid #000; /* Adiciona uma borda sólida preta com 2px de espessura na lateral direita */
+    border-left: 2px solid #000;
+    border-right: 2px solid #000;
 }
 
 tbody tr th, tbody tr td {
-    border-left: 2px solid #000; /* Adiciona uma borda sólida preta com 2px de espessura na lateral esquerda */
-    border-right: 2px solid #000; /* Adiciona uma borda sólida preta com 2px de espessura na lateral direita */
+    border-left: 2px solid #000;
+    border-right: 2px solid #000;
 }
 /*
  * Sidebar

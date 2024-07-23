@@ -101,12 +101,7 @@ public class AlunoController {
         model.addAttribute("alunos", alunoService.buscarPorDatas(entrada, saida));
         return "aluno/lista";
     }
-	
-//	@ModelAttribute("cargos")
-//	public List<Cargo> getCargos() {
-//		return cargoService.buscarTodos();
-//	}
-//
+
 	@ModelAttribute("ufs")
 	public UfEnum[] getUFs() {
 		return UfEnum.values();

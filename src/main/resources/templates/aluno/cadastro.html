@@ -289,8 +289,7 @@
                     </div>
                     <div class="form-group col-md-6">
                         <label for="rendaFamilia">Renda Familiar</label>
-                        <input type="text" class="form-control" id="rendaFamilia"
-                               th:field="*{socioeconomico.rendaFamilia}">
+                        <input type="text" class="form-control" id="rendaFamilia" th:field="*{socioeconomico.rendaFamilia}" step="0.01" min="0" placeholder="R$ 0,00">
                     </div>
                 </div>
             </fieldset>
