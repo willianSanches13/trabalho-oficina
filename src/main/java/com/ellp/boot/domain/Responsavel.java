@@ -1,10 +1,13 @@
 package com.ellp.boot.domain;
 
+import com.ellp.boot.domain.enums.ParentescoEnum;
 import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
@@ -26,8 +29,6 @@ public class Responsavel extends AbstractEntity<Long> {
 	@Column(name = "telefone", nullable = false)
 	private String telefone;
 
-	@NotBlank
-	@Size(max = 255, min = 3)
-	@Column(nullable = false, unique = true)
-	private String parentesco;
+	@Enumerated(EnumType.STRING)
+	private ParentescoEnum parentesco;
 }

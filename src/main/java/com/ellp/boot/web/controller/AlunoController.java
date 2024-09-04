@@ -3,6 +3,9 @@ package com.ellp.boot.web.controller;
 import com.ellp.boot.domain.*;
 import com.ellp.boot.domain.enums.CasaEnum;
 import com.ellp.boot.domain.enums.EscolaridadeEnum;
+import com.ellp.boot.domain.enums.MotivoSaidaEnum;
+import com.ellp.boot.domain.enums.ParentescoEnum;
+import com.ellp.boot.domain.enums.SerieEnum;
 import com.ellp.boot.domain.enums.SimNaoEnum;
 import com.ellp.boot.domain.enums.UfEnum;
 import com.ellp.boot.web.validator.AlunoValidator;
@@ -109,6 +112,21 @@ public class AlunoController {
 	@ModelAttribute("escolaridades")
 	public EscolaridadeEnum[] getEscolaridades() {
 		return EscolaridadeEnum.values();
+	}
+
+	@ModelAttribute("motivosSaida")
+	public MotivoSaidaEnum[] getMotivosSaida() {
+		return MotivoSaidaEnum.values();
+	}
+
+	@ModelAttribute("series")
+	public SerieEnum[] getSeries() {
+		return SerieEnum.values();
+	}
+
+	@ModelAttribute("parentescos")
+	public ParentescoEnum[] getParentescos() {
+		return ParentescoEnum.values();
 	}
 
 

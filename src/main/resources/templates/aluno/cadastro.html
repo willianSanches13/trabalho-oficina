@@ -51,20 +51,23 @@
                     </div>
                 </div>
                 <div class="form-row">
-                    <div class="form-group col-md-6">
-                        <label for="dataEntrada">Data de Entrada</label>
-                        <input type="date" class="form-control" id="dataEntrada" th:field="*{dataEntrada}"
-                               th:classappend="${#fields.hasErrors('dataEntrada')} ? 'is-invalid'"/>
-                        <div class="invalid-feedback">
-                            <span th:errors="*{dataEntrada}"></span>
-                        </div>
-                    </div>
-                    <div class="form-group col-md-6">
+                    <div class="form-group col-md-6" th:if="${aluno.id != null}">
                         <label for="dataSaida">Data de Saída</label>
                         <input type="date" class="form-control" id="dataSaida" th:field="*{dataSaida}"
                                th:classappend="${#fields.hasErrors('dataSaida')} ? 'is-invalid'"/>
                         <div class="invalid-feedback">
                             <span th:errors="*{dataSaida}"></span>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-6" th:if="${aluno.id != null}">
+                        <label for="motivoSaida">Motivo da Saída</label>
+                        <select class="form-control" id="motivoSaida" th:field="*{motivoSaida}"
+                                th:classappend="${#fields.hasErrors('motivoSaida')} ? 'is-invalid'">
+                            <option value="">Selecione...</option>
+                            <option th:each="motivo : ${motivosSaida}" th:value="${motivo}" th:text="${motivo.descricao}"></option>
+                        </select>
+                        <div class="invalid-feedback">
+                            <span th:errors="*{motivoSaida}"></span>
                         </div>
                     </div>
                 </div>
@@ -78,9 +81,12 @@
                         </div>
                     </div>
                     <div class="form-group col-md-6">
-                        <label for="dataSaida">Serie</label>
-                        <input type="text" class="form-control" id="serie" th:field="*{serie}"
-                               th:classappend="${#fields.hasErrors('serie')} ? 'is-invalid'"/>
+                        <label for="serie">Serie</label>
+                        <select class="form-control" id="serie" th:field="*{serie}"
+                                th:classappend="${#fields.hasErrors('serie')} ? 'is-invalid'">
+                            <option value="">Selecione...</option>
+                            <option th:each="serie : ${series}" th:value="${serie}" th:text="${serie.descricao}"></option>
+                        </select>
                         <div class="invalid-feedback">
                             <span th:errors="*{serie}"></span>
                         </div>
@@ -89,7 +95,7 @@
                 <div class="form-row">
                     <div class="form-group col-md-6">
                         <label for="telefone">Telefone</label>
-                        <input type="text" class="form-control" id="telefone" th:field="*{telefone}"
+                        <input type="text" class="form-control" id="telefone" th:field="*{telefone}" data-mask="(00) 00000-0000"
                                th:classappend="${#fields.hasErrors('telefone')} ? 'is-invalid'"/>
                         <div class="invalid-feedback">
                             <span th:errors="*{telefone}"></span>
@@ -97,7 +103,7 @@
                     </div>
                     <div class="form-group col-md-6">
                         <label for="numeroFamiliares">Número de Familiares</label>
-                        <input type="number" class="form-control" id="numeroFamiliares"
+                        <input type="number" class="form-control" id="numeroFamiliares" min="0"
                                th:field="*{numeroFamiliares}"
                                th:classappend="${#fields.hasErrors('numeroFamiliares')} ? 'is-invalid'"/>
                         <div class="invalid-feedback">
@@ -141,15 +147,21 @@
                     </div>
                     <div class="form-group col-md-4">
                         <label for="telefoneResponsavel">Telefone</label>
-                        <input type="text" class="form-control" id="telefoneResponsavel" th:field="*{responsavel.telefone}"/>
+                        <input type="text" class="form-control" id="telefoneResponsavel" th:field="*{responsavel.telefone}" data-mask="(00) 00000-0000"/>
                     </div>
                     <div class="form-group col-md-4">
                         <label for="parentesco">Parentesco</label>
-                        <input type="text" class="form-control" id="parentesco" th:field="*{responsavel.parentesco}"/>
+                        <select class="form-control" id="parentesco" th:field="*{responsavel.parentesco}"
+                                th:classappend="${#fields.hasErrors('responsavel.parentesco')} ? 'is-invalid'">
+                            <option value="">Selecione...</option>
+                            <option th:each="parentesco : ${parentescos}" th:value="${parentesco}" th:text="${parentesco.descricao}"></option>
+                        </select>
+                        <div class="invalid-feedback">
+                            <span th:errors="*{responsavel.parentesco}"></span>
+                        </div>
                     </div>
                 </div>
             </fieldset>
-
             <fieldset>
                 <legend>Endereço</legend>
                 <div class="form-row">
@@ -174,10 +186,11 @@
                 <div class="form-row">
                     <div class="form-group col-md-6">
                         <label for="numero">Número</label>
-                        <input type="number" class="form-control" id="numero" th:field="*{endereco.numero}"
+                        <input type="number" class="form-control" id="numero" th:field="*{endereco.numero}" required title="Número é obrigatório" min="0"
                                th:classappend="${#fields.hasErrors('endereco.numero')} ? 'is-invalid'"/>
                         <div class="invalid-feedback">
                             <span th:errors="*{endereco.numero}"></span>
+                            <span th:if="${#fields.hasErrors('endereco.numero')} == false">Número é obrigatório.</span>
                         </div>
                     </div>
                     <div class="form-group col-md-6">
@@ -239,6 +252,13 @@
                             <option th:each="sn : ${sNs}" th:value="${sn}" th:text="${sn.descricao}"></option>
                         </select>
                     </div>
+                    <div class="form-group col-md-4">
+                        <label for="casa">Casa</label>
+                        <select id="casa" class="form-control" th:field="*{socioeconomico.casa}">
+                            <option value="">Selecione...</option>
+                            <option th:each="casa : ${casas}" th:value="${casa}" th:text="${casa.descricao}"></option>
+                        </select>
+                    </div>
                 </div>
                 <div class="form-row">
                     <div class="form-group col-md-4">
@@ -255,6 +275,10 @@
                             <option th:each="escolaridade : ${escolaridades}" th:value="${escolaridade}" th:text="${escolaridade.descricao}"></option>
                         </select>
                     </div>
+                    <div class="form-group col-md-4">
+                        <label for="rendaFamilia">Renda Familiar</label>
+                        <input type="text" class="form-control" id="rendaFamilia" th:field="*{socioeconomico.rendaFamilia}" step="0.01" min="0" placeholder="R$ 0,00">
+                    </div>
                 </div>
                 <div class="form-row">
                     <div class="form-group col-md-6">
@@ -269,27 +293,13 @@
                 <div class="form-row">
                     <div class="form-group col-md-6">
                         <label for="numeroFilhosFamilia">Número de Filhos na Família</label>
-                        <input type="number" class="form-control" id="numeroFilhosFamilia"
+                        <input type="number" class="form-control" id="numeroFilhosFamilia" min="0"
                                th:field="*{socioeconomico.numeroFilhosFamilia}">
                     </div>
-
-                    <div class="form-group col-md-4">
-                        <label for="casa">Casa</label>
-                        <select id="casa" class="form-control" th:field="*{socioeconomico.casa}">
-                            <option value="">Selecione...</option>
-                            <option th:each="casa : ${casas}" th:value="${casa}" th:text="${casa.descricao}"></option>
-                        </select>
-                    </div>
-                </div>
-                <div class="form-row">
                     <div class="form-group col-md-6">
                         <label for="numeroPessoasEmpregadas">Número de Pessoas Empregadas na Família</label>
-                        <input type="number" class="form-control" id="numeroPessoasEmpregadas"
+                        <input type="number" class="form-control" id="numeroPessoasEmpregadas" min="0"
                                th:field="*{socioeconomico.numeroPessoasEmpregadas}">
-                    </div>
-                    <div class="form-group col-md-6">
-                        <label for="rendaFamilia">Renda Familiar</label>
-                        <input type="text" class="form-control" id="rendaFamilia" th:field="*{socioeconomico.rendaFamilia}" step="0.01" min="0" placeholder="R$ 0,00">
                     </div>
                 </div>
             </fieldset>

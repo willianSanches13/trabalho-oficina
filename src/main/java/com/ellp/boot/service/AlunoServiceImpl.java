@@ -21,13 +21,14 @@ public class AlunoServiceImpl implements AlunoService {
 	@Transactional(readOnly = false)
 	@Override
 	public void salvar(Aluno aluno) {
+		aluno.setDataEntrada(LocalDate.now());
 		dao.save(aluno);
 	}
 
 	@Transactional(readOnly = false)
 	@Override
-	public void editar(Aluno funcionario) {
-		dao.update(funcionario);
+	public void editar(Aluno aluno) {
+		dao.update(aluno);
 	}
 
 	@Transactional(readOnly = false)

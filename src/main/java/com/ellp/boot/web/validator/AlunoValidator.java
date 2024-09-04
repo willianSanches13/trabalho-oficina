@@ -25,7 +25,7 @@ public class AlunoValidator implements Validator {
 		
 		if (f.getDataEntrada() != null && f.getDataSaida() != null) {
 			if (f.getDataSaida().isBefore(entrada)) {
-				errors.rejectValue("dataSaida", "PosteriorDataEntrada.funcionario.dataSaida");
+				errors.rejectValue("dataSaida", "PosteriorDataEntrada.aluno.dataSaida");
 			}
 		}
 	}

@@ -7,9 +7,9 @@ import com.ellp.boot.domain.Aluno;
 
 public interface AlunoDao {
     
-	void save(Aluno funcionario);
+	void save(Aluno aluno);
 
-    void update(Aluno funcionario);
+    void update(Aluno aluno);
 
     void delete(Long id);
 

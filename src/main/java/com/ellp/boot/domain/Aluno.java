@@ -1,5 +1,7 @@
 package com.ellp.boot.domain;
 
+import com.ellp.boot.domain.enums.MotivoSaidaEnum;
+import com.ellp.boot.domain.enums.SerieEnum;
 import com.ellp.boot.domain.enums.SimNaoEnum;
 import lombok.Getter;
 import lombok.Setter;
@@ -28,15 +30,18 @@ public class Aluno extends AbstractEntity<Long> {
 	@Column(name= "data_nascimento", nullable = false, columnDefinition = "DATE")
 	private LocalDate dataNascimento;
 
-	@NotNull
 	@PastOrPresent(message = "{PastOrPresent.aluno.dataEntrada}")
 	@DateTimeFormat(iso = ISO.DATE, pattern = "")
 	@Column(name= "data_entrada", nullable = false, columnDefinition = "DATE")
 	private LocalDate dataEntrada;
-	
+
 	@DateTimeFormat(iso = ISO.DATE)
-   @Column(name = "data_saida", columnDefinition = "DATE")
+	@Column(name = "data_saida", columnDefinition = "DATE")
 	private LocalDate dataSaida;
+
+	@Column(name = "motivo_saida")
+	@Enumerated(EnumType.STRING)
+	private MotivoSaidaEnum motivoSaida;
 
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "socioeconomico_id_fk")
@@ -45,7 +50,6 @@ public class Aluno extends AbstractEntity<Long> {
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "endereco_id_fk")
 	private Endereco endereco;
-
 
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "responsavel_id_fk")
@@ -56,13 +60,10 @@ public class Aluno extends AbstractEntity<Long> {
 	@Column(nullable = false)
 	private String escola;
 
-	@NotBlank
-	@Size(max = 255, min = 3)
-	@Column(nullable = false)
-	private String serie;
+	@Enumerated(EnumType.STRING)
+	private SerieEnum serie;
 
 	@NotBlank
-//	@Pattern(regexp = "^\\(\\d{2}\\)\\s\\d{4,5}-\\d{4}$", message = "{Pattern.aluno.telefone}")
 	@Column(name = "telefone", nullable = false)
 	private String telefone;
 
@@ -80,5 +81,4 @@ public class Aluno extends AbstractEntity<Long> {
 	@Column(name = "internet", nullable = false, length = 5)
 	@Enumerated(EnumType.STRING)
 	private SimNaoEnum acessoInternet;
-
 }

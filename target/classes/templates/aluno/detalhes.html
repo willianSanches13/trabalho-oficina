@@ -23,18 +23,18 @@
             <div class="col-md-4"><strong>Escola:</strong> <br> <span th:text="${aluno.escola}"></span></div>
         </div>
         <div class="row">
-            <div class="col-md-4"><strong>Série:</strong> <br> <span th:text="${aluno.serie}"></span></div>
+            <div class="col-md-4"><strong>Série:</strong> <br> <span th:text="${aluno.serie.getDescricao()}"></span></div>
             <div class="col-md-4"><strong>Telefone:</strong> <br> <span th:text="${aluno.telefone}"></span></div>
             <div class="col-md-4"><strong>Número de Familiares:</strong> <br> <span th:text="${aluno.numeroFamiliares}"></span></div>
             <div class="col-md-4"><strong>Necessita de Transporte:</strong> <br> <span th:text="${aluno.nececissadeTrasporte}"></span></div>
-            <div class="col-md-4"><strong>Acesso a Internet:</strong> <br> <span th:text="${aluno.acessoInternet}"></span></div>
+            <div class="col-md-4"><strong>Acesso a Internet:</strong> <br> <span th:text="${aluno.acessoInternet.getDescricao()}"></span></div>
         </div>
 
         <h3 th:if="${aluno.responsavel != null}">Responsável</h3>
         <div class="row" th:if="${aluno.responsavel.nome != null}">
             <div class="col-md-4"><strong>Nome:</strong> <br> <span th:text="${aluno.responsavel.nome}"></span></div>
             <div class="col-md-4"><strong>Telefone:</strong> <br> <span th:text="${aluno.responsavel.telefone}"></span></div>
-            <div class="col-md-4"><strong>Parentesco:</strong> <br> <span th:text="${aluno.responsavel.parentesco}"></span></div>
+            <div class="col-md-4"><strong>Parentesco:</strong> <br> <span th:text="${aluno.responsavel.parentesco.getDescricao()}"></span></div>
         </div>
 
         <h3 th:if="${aluno.endereco != null}">Endereço</h3>
@@ -54,18 +54,18 @@
 
         <h3 th:if="${aluno.socioeconomico != null}">Dados Socioeconômicos</h3>
         <div class="row">
-            <div class="col-md-4"><strong>Possui Computador:</strong> <br> <span th:text="${aluno.socioeconomico.possuiComputador}"></span></div>
-            <div class="col-md-4"><strong>Carro na Família:</strong> <br> <span th:text="${aluno.socioeconomico.carroFamilia}"></span></div>
-            <div class="col-md-4"><strong>Escolaridade do Pai:</strong> <br> <span th:text="${aluno.socioeconomico.escolaridadePai}"></span></div>
+            <div class="col-md-4"><strong>Possui Computador:</strong> <br> <span th:text="${aluno.socioeconomico.possuiComputador.getDescricao()}"></span></div>
+            <div class="col-md-4"><strong>Carro na Família:</strong> <br> <span th:text="${aluno.socioeconomico.carroFamilia.getDescricao()}"></span></div>
+            <div class="col-md-4"><strong>Escolaridade do Pai:</strong> <br> <span th:text="${aluno.socioeconomico.escolaridadePai.getDescricao()}"></span></div>
         </div>
         <div class="row">
-            <div class="col-md-4"><strong>Escolaridade da Mãe:</strong> <br> <span th:text="${aluno.socioeconomico.escolaridadeMae}"></span></div>
+            <div class="col-md-4"><strong>Escolaridade da Mãe:</strong> <br> <span th:text="${aluno.socioeconomico.escolaridadeMae.getDescricao()}"></span></div>
             <div class="col-md-4"><strong>Emprego do Pai:</strong> <br> <span th:text="${aluno.socioeconomico.empregoPai}"></span></div>
             <div class="col-md-4"><strong>Emprego da Mãe:</strong> <br> <span th:text="${aluno.socioeconomico.empregoMae}"></span></div>
         </div>
         <div class="row">
             <div class="col-md-4"><strong>Número de Filhos na Família:</strong> <br> <span th:text="${aluno.socioeconomico.numeroFilhosFamilia}"></span></div>
-            <div class="col-md-4"><strong>Casa:</strong> <br> <span th:text="${aluno.socioeconomico.casa}"></span></div>
+            <div class="col-md-4"><strong>Casa:</strong> <br> <span th:text="${aluno.socioeconomico.casa.getDescricao()}"></span></div>
             <div class="col-md-4"><strong>Número de Pessoas Empregadas na Família:</strong> <br> <span th:text="${aluno.socioeconomico.numeroPessoasEmpregadas}"></span></div>
         </div>
         <div class="row" th:if="${aluno.socioeconomico.rendaFamilia != null}">

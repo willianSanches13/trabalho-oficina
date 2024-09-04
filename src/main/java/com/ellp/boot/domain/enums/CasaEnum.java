@@ -6,7 +6,8 @@ import lombok.Getter;
 public enum CasaEnum {
 
     PROPRIA("Própria"),
-    ALUGADA("Alugada");
+    ALUGADA("Alugada"),
+    CEDIDA("Cedida");
 
     private final String descricao;
 
