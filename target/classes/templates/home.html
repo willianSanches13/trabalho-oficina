@@ -17,7 +17,7 @@
 			</div>
 		</nav>
 
-    <h1 class="text-center">Gráficos</h1>
+    <h1 class="text-center">Grafico Mensal de Evasão de Alunos</h1>
 		<div class="container mt-5">
 			<canvas id="graficoAlunos"></canvas>
 		</div>
@@ -32,10 +32,10 @@
 		var chart = new Chart(ctx, {
 			type: 'bar',
 			data: {
-				labels: ['Janeiro', 'Fevereiro', 'Março'],
+				labels: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'],
 				datasets: [{
 					label: 'Evasão de Alunos',
-					data: [12, 19, 3],
+					data: [12, 19, 3, 1, 2, 9, 7, 2, 3, 6, 2, 15],
 					backgroundColor: [
 						'rgba(255, 99, 132, 0.2)',
 						'rgba(54, 162, 235, 0.2)',

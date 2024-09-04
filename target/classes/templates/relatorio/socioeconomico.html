@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Relatório Socioeconômico</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container mt-5">
+    <h1 class="mb-4">Relatório de Evasão de Alunos</h1>
+
+    <form th:action="@{/relatorios/socioeconomico}" method="post" class="mb-4">
+        <div class="form-row">
+            <div class="form-group col-md-4">
+                <label for="motivoSaida">Motivo de Saída:</label>
+                <input type="text" class="form-control" id="motivoSaida" name="motivoSaida">
+            </div>
+            <div class="form-group col-md-4">
+                <label for="rendaFamiliar">Renda Familiar:</label>
+                <input type="text" class="form-control" id="rendaFamiliar" name="rendaFamiliar">
+            </div>
+            <div class="form-group col-md-4">
+                <label for="anoLetivo">Ano Letivo:</label>
+                <input type="number" class="form-control" id="anoLetivo" name="anoLetivo">
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-3">
+                <label for="possuiComputador">Possui Computador:</label>
+                <input type="checkbox" class="form-control" id="possuiComputador" name="possuiComputador">
+            </div>
+            <div class="form-group col-md-3">
+                <label for="escolaridadePai">Escolaridade do Pai:</label>
+                <input type="text" class="form-control" id="escolaridadePai" name="escolaridadePai">
+            </div>
+            <div class="form-group col-md-3">
+                <label for="escolaridadeMae">Escolaridade da Mãe:</label>
+                <input type="text" class="form-control" id="escolaridadeMae" name="escolaridadeMae">
+            </div>
+            <div class="form-group col-md-3">
+                <label for="carroFamilia">Carro na Família:</label>
+                <input type="checkbox" class="form-control" id="carroFamilia" name="carroFamilia">
+            </div>
+        </div>
+        <button type="submit" class="btn btn-primary">Atualizar Relatório</button>
+    </form>
+
+    <h2>Contagem de Alunos por Motivo de Saída</h2>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>Motivo de Saída</th>
+            <th>Contagem</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>Transferência</td>
+            <td>10</td>
+        </tr>
+        <tr>
+            <td>Desistência</td>
+            <td>5</td>
+        </tr>
+        <tr>
+            <td>Formatura</td>
+            <td>15</td>
+        </tr>
+        </tbody>
+    </table>
+
+    <h2>Contagem de Alunos por Renda Familiar</h2>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>Renda Familiar</th>
+            <th>Contagem</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>Até 1 salário mínimo</td>
+            <td>8</td>
+        </tr>
+        <tr>
+            <td>De 1 a 3 salários mínimos</td>
+            <td>12</td>
+        </tr>
+        <tr>
+            <td>Mais de 3 salários mínimos</td>
+            <td>10</td>
+        </tr>
+        </tbody>
+    </table>
+
+    <h2>Contagem de Alunos por Ano Letivo</h2>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>Ano Letivo</th>
+            <th>Contagem</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>2021</td>
+            <td>20</td>
+        </tr>
+        <tr>
+            <td>2022</td>
+            <td>15</td>
+        </tr>
+        <tr>
+            <td>2023</td>
+            <td>10</td>
+        </tr>
+        </tbody>
+    </table>
+
+    <h2>Contagem de Alunos por Possui Computador</h2>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>Possui Computador</th>
+            <th>Contagem</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>Sim</td>
+            <td>25</td>
+        </tr>
+        <tr>
+            <td>Não</td>
+            <td>5</td>
+        </tr>
+        </tbody>
+    </table>
+
+    <h2>Contagem de Alunos por Escolaridade do Pai</h2>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>Escolaridade do Pai</th>
+            <th>Contagem</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>Ensino Fundamental</td>
+            <td>10</td>
+        </tr>
+        <tr>
+            <td>Ensino Médio</td>
+            <td>15</td>
+        </tr>
+        <tr>
+            <td>Ensino Superior</td>
+            <td>5</td>
+        </tr>
+        </tbody>
+    </table>
+
+    <h2>Contagem de Alunos por Escolaridade da Mãe</h2>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>Escolaridade da Mãe</th>
+            <th>Contagem</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>Ensino Fundamental</td>
+            <td>12</td>
+        </tr>
+        <tr>
+            <td>Ensino Médio</td>
+            <td>10</td>
+        </tr>
+        <tr>
+            <td>Ensino Superior</td>
+            <td>8</td>
+        </tr>
+        </tbody>
+    </table>
+
+    <h2>Contagem de Alunos por Carro na Família</h2>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>Carro na Família</th>
+            <th>Contagem</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>Sim</td>
+            <td>18</td>
+        </tr>
+        <tr>
+            <td>Não</td>
+            <td>12</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

@@ -51,7 +51,15 @@
                     </div>
                 </div>
                 <div class="form-row">
-                    <div class="form-group col-md-6" th:if="${aluno.id != null}">
+                    <div class="form-group col-md-4" th:if="${aluno.id != null}">
+                        <label for="dataEntrada">Data de Entrada</label>
+                        <input type="date" class="form-control" id="dataEntrada" th:field="*{dataEntrada}"
+                               th:classappend="${#fields.hasErrors('dataEntrada')} ? 'is-invalid'"/>
+                        <div class="invalid-feedback">
+                            <span th:errors="*{dataEntrada}"></span>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-4" th:if="${aluno.id != null}">
                         <label for="dataSaida">Data de Saída</label>
                         <input type="date" class="form-control" id="dataSaida" th:field="*{dataSaida}"
                                th:classappend="${#fields.hasErrors('dataSaida')} ? 'is-invalid'"/>
@@ -59,7 +67,7 @@
                             <span th:errors="*{dataSaida}"></span>
                         </div>
                     </div>
-                    <div class="form-group col-md-6" th:if="${aluno.id != null}">
+                    <div class="form-group col-md-4" th:if="${aluno.id != null}">
                         <label for="motivoSaida">Motivo da Saída</label>
                         <select class="form-control" id="motivoSaida" th:field="*{motivoSaida}"
                                 th:classappend="${#fields.hasErrors('motivoSaida')} ? 'is-invalid'">
